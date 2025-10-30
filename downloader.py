@@ -18,7 +18,7 @@ def postprocessor_hook(d):
                     tags = EasyID3(full_path[0])
                 print(full_path[0])
                 print(os.path.exists(full_path[0]))
-                tags['title'] = title
+                tags['title'] = title.split('-')[1].strip() if '-' in title else 'Unknown Title'
                 tags['artist'] = title.split('-')[0].strip() if '-' in title else 'Unknown Artist'
                 tags.save()
 
@@ -32,7 +32,7 @@ def download_mp3(url, outdir):
             'preferredquality': '320',
         }],
         'postprocessor_hooks': [postprocessor_hook],
-        'outtmpl': f'{outdir}/%(title)s.%(ext)s',
+        'outtmpl': f'{outdir}/%(playlist_index)s-%(title)s.%(ext)s',
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
