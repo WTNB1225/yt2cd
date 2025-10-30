@@ -35,5 +35,4 @@ def download_mp3(url, outdir):
         'outtmpl': f'{outdir}/%(title)s.%(ext)s',
     }
     with YoutubeDL(ydl_opts) as ydl:
-        res = ydl.download(url)
-        print("download result:", res)
+        ydl.download([url])

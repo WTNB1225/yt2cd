@@ -1,3 +1,5 @@
 musics/
 __pycache__/
 .venv/
+iso/
+*.iso
