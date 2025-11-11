@@ -32,7 +32,7 @@ def download_mp3(url, outdir):
             'preferredquality': '320',
         }],
         'postprocessor_hooks': [postprocessor_hook],
-        'outtmpl': f'{outdir}/%(playlist_index)s-%(title)s.%(ext)s',
+        'outtmpl': f'{outdir}/%(playlist_index)s-%(title)s.%(ext)s' if 'list=' in url else f'{outdir}/%(title)s.%(ext)s',
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
